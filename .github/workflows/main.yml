@@ -1,5 +1,14 @@
 name: infographics
-on: push
-  actions:
-   - name: Repo Visualizer
-     uses: githubocto/repo-visualizer@0.9.1
+on:
+  push:
+    branches:
+     - main
+jobs:
+  update-diagram:
+    runs-on: ${{ github.os }}
+    steps:
+      - name: Update diagram
+        uses: githubocto/repo-visualizer@0.7.1
+        with:
+          output_file: "images/diagram.svg"
+          excluded_paths: "dist,node_modules"
